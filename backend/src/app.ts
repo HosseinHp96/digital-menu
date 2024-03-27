@@ -1,4 +1,8 @@
 import express from "express";
+import { initAppDS } from "./app-data-source";
+
+// establish database connection
+initAppDS();
 
 const app = express();
 
