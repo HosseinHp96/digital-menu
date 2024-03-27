@@ -1,4 +1,8 @@
 import app from "./src/app";
+import { initAppDS } from "./src/app-data-source";
+
+// establish database connection
+initAppDS();
 
 const port = process.env.PORT || "3000";
 
