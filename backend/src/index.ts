@@ -1,6 +1,6 @@
 import express from "express";
 import { initAppDS } from "./app-data-source";
-import { productRoute } from "./routes";
+import { productRouter } from "./routes";
 
 // establish database connection
 initAppDS();
@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 });
 
 // routes
-app.use("/api/products", productRoute);
+app.use("/api/products", productRouter);
 
 // port
 const port = process.env.PORT || "3000";
