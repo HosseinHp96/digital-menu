@@ -16,5 +16,5 @@ export const errorHandler = (
   // Unhandled errors
   res
     .status(500)
-    .send({ errors: [{ message: err.message || "Something went wrong" }] });
+    .send({ errors: [{ message: err.message || "Internal server error" }] });
 };
