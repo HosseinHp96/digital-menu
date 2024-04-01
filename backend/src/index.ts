@@ -1,6 +1,6 @@
 import express from "express";
 import { initAppDS } from "./app-data-source";
-import { productRouter } from "./routes";
+import { productRouter, userRouter } from "./routes";
 import { errorHandler, cors } from "./middlewares";
 
 // establish database connection
@@ -16,6 +16,7 @@ app.use(cors);
 
 // routes
 app.use("/api/products", productRouter);
+app.use("/api/users", userRouter);
 
 // error handling
 app.use(errorHandler);
