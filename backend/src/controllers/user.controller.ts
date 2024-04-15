@@ -5,7 +5,7 @@ import { userSercives } from "../services";
 export const login = tryCatchHandler(async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
-  await userSercives.login(username, password);
+  const token = await userSercives.login(username, password);
 
-  res.send("login");
+  res.send({ token });
 });
