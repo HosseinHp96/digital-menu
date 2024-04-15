@@ -7,7 +7,6 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-
   if (err instanceof AppError) {
     const { statusCode, errors } = err;
 
@@ -15,7 +14,7 @@ export const errorHandler = (
   }
 
   // Unhandled errors
-  res
+  return res
     .status(err.hasOwnProperty("_original") ? 400 : 500) //this is for joi errors
     .send({ errors: [{ message: err.message || "Internal server error" }] });
 };
