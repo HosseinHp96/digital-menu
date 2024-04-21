@@ -1,5 +1,5 @@
-import { allProductsDao } from "../dao";
+import ProductDao from "../dao/product.dao";
 
-export const allProductsService = async () => {
-  return await allProductsDao();
+export const allProducts = async () => {
+  return await ProductDao.allProducts();
 };

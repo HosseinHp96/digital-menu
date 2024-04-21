@@ -1,7 +1,7 @@
 import express from "express";
 import { initAppDS } from "./app-data-source";
 import { productRouter, userRouter } from "./routes";
-import { errorHandler, cors, auth } from "./middlewares";
+import { errorHandler, cors } from "./middlewares";
 import { AppError } from "./utils";
 
 // establish database connection
@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cors);
 
 // routes
-app.use("/api/products", auth("admin"), productRouter);
+app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
 
 app.use(() => {

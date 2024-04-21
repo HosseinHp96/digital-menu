@@ -1,7 +1,10 @@
 import { AppDataSource } from "../app-data-source";
 import Product from "../entities/products.entity";
+export default class ProductDao {
+  static productRepo = AppDataSource.getRepository(Product);
 
-export const allProductsDao = async () => {
-  const productRepo = AppDataSource.getRepository(Product);
-  return await productRepo.find();
-};
+  static allProducts = async () => {
+    const products = await ProductDao.productRepo.find();
+    return products;
+  };
+}

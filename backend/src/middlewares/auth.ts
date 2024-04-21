@@ -10,12 +10,6 @@ export const auth = (role: string) => {
       throw new AppError({ message: "Access denied", statusCode: 401 });
 
     try {
-      console.log("injjaa");
-
-      console.log(
-        Jwt.verify(token, process.env.AUTH_SECRET_KEY!) as customJwtPayload
-      );
-
       const decoded = Jwt.verify(
         token,
         process.env.AUTH_SECRET_KEY!

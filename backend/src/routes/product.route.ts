@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { allProducts } from "../controllers";
+import { productController } from "../controllers";
+import { auth } from "../middlewares";
 
 const router = Router();
 
-router.get("/", allProducts);
+router.use(auth("admin"));
+router.get("/", productController.allProducts);
 
 export { router as productRouter };
