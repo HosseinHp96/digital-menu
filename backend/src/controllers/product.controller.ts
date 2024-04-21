@@ -8,3 +8,12 @@ export const allProducts = tryCatchHandler(
     res.json(products);
   }
 );
+
+export const getProductByID = tryCatchHandler(
+  async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+
+    const product = await productServices.getProductByID(id);
+    res.json(product);
+  }
+);
