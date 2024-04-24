@@ -12,6 +12,11 @@ const app: express.Application = express();
 
 // middlewares
 app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
 app.use(cors);
 
