@@ -8,8 +8,8 @@ export default class ProductDao {
     return products;
   };
 
-  static getProductByID = async (id: number) => {
-    const product = await ProductDao.productRepo.findOneBy({ id });
+  static getProduct = async (data: any) => {
+    const product = await ProductDao.productRepo.findOneBy(data);
     return product;
   };
 
