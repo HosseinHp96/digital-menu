@@ -7,3 +7,7 @@ dist/
 .env.test.local
 .env.production.local
 .env.local
+
+
+tmp/images/*
+tmp/videos/*
