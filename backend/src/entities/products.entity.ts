@@ -15,7 +15,7 @@ export default class Product {
   image!: string;
 
   @Column()
-  postion!: string;
+  position!: string;
 
   @Column()
   description!: string;
