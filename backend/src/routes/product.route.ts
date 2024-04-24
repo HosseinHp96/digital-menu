@@ -7,6 +7,7 @@ const router = Router();
 router.use(auth("admin"));
 router.get("/", productController.allProducts);
 router.get("/:id", productController.getProductByID);
+router.delete("/:id", productController.removeProduct);
 router.post(
   "/add",
   uploadImages.array("images", 5),

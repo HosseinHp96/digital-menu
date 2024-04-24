@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { productServices } from "../services";
-import { tryCatchHandler } from "../utils";
+import { AppError, tryCatchHandler } from "../utils";
 import fs from "fs";
 
 export const allProducts = tryCatchHandler(
@@ -34,3 +34,14 @@ export const addProduct = async (
     next(err);
   }
 };
+
+export const removeProduct = tryCatchHandler(
+  async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+
+    const result = await productServices.removeProduct(id);
+    if (!result.affected)
+      throw new AppError({ message: "There is no product with this ID" });
+    else res.send("Done");
+  }
+);

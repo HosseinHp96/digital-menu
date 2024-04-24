@@ -21,3 +21,7 @@ export const addProduct = async (product: Product) => {
 
   return await ProductDao.addProduct(product);
 };
+
+export const removeProduct = async (id: number) => {
+  return await ProductDao.removeProduct(id);
+};

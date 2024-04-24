@@ -1,3 +1,4 @@
+import { FindOptionsWhere } from "typeorm";
 import { AppDataSource } from "../app-data-source";
 import { Product } from "../entities";
 export default class ProductDao {
@@ -8,13 +9,18 @@ export default class ProductDao {
     return products;
   };
 
-  static getProduct = async (data: any) => {
+  static getProduct = async (data: FindOptionsWhere<Product>) => {
     const product = await ProductDao.productRepo.findOneBy(data);
     return product;
   };
 
   static addProduct = async (product: Product) => {
     const result = await ProductDao.productRepo.save(product);
+    return result;
+  };
+
+  static removeProduct = async (id: number) => {
+    const result = await ProductDao.productRepo.delete(id);
     return result;
   };
 }
