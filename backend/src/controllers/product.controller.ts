@@ -25,7 +25,7 @@ export const addProduct = async (
   next: NextFunction
 ) => {
   try {
-    req.body.image = req.file?.path;
+    req.body.images = req.files;
 
     const product = await productServices.addProduct(req.body);
     res.json(product);

@@ -11,8 +11,8 @@ export default class Product {
   @Column()
   price!: number;
 
-  @Column()
-  image!: string;
+  @Column("simple-array")
+  images!: string[];
 
   @Column()
   position!: string;

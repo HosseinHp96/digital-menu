@@ -7,6 +7,10 @@ const router = Router();
 router.use(auth("admin"));
 router.get("/", productController.allProducts);
 router.get("/:id", productController.getProductByID);
-router.post("/add", uploadImages.single("image"), productController.addProduct);
+router.post(
+  "/add",
+  uploadImages.array("images", 5),
+  productController.addProduct
+);
 
 export { router as productRouter };

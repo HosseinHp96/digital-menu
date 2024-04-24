@@ -32,6 +32,7 @@ export const uploadImages = multer({
   storage: storage,
   limits: { fileSize: 1000000 },
   fileFilter(req, file, cb) {
+        
     if (imgExtension.hasOwnProperty(file.mimetype)) cb(null, true);
     else {
       cb(
