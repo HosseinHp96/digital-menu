@@ -30,7 +30,27 @@ export const addProduct = async (
     const product = await productServices.addProduct(req.body);
     res.json(product);
   } catch (err) {
+    const images = req.files as Express.Multer.File[];
+    if (images.length) images.forEach((item) => fs.unlinkSync(item.path));
+
+    next(err);
+  }
+};
+
+export const updateProduct = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const id = parseInt(req.params.id);
+    req.body.images = req.files;
+
+    const product = await productServices.updateProduct(req.body, id);
+    res.json(product);
+  } catch (err) {
     if (req.body.image) fs.unlinkSync(req.body.image);
+
     next(err);
   }
 };
