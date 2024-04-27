@@ -49,7 +49,8 @@ export const updateProduct = async (
     const product = await productServices.updateProduct(req.body, id);
     res.json(product);
   } catch (err) {
-    if (req.body.image) fs.unlinkSync(req.body.image);
+    const images = req.files as Express.Multer.File[];
+    if (images.length) images.forEach((item) => fs.unlinkSync(item.path));
 
     next(err);
   }
