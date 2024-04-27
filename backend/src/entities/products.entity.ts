@@ -11,8 +11,8 @@ export default class Product {
   @Column()
   price!: number;
 
-  @Column("simple-array")
-  images!: string[];
+  @Column("json")
+  images!: Express.Multer.File[];
 
   @Column()
   position!: string;
