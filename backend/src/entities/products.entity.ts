@@ -1,25 +1,28 @@
-import { Entity, Column } from "typeorm";
-
+import { Entity, Column, ManyToOne } from "typeorm";
+import Category from "./category.entity";
 @Entity({ name: "products" })
 export default class Product {
   @Column({ primary: true, generated: true })
   id!: number;
 
-  @Column()
+  @Column("text")
   title!: string;
 
-  @Column()
+  @Column("int")
   price!: number;
 
   @Column("json")
   images!: Express.Multer.File[];
 
-  @Column()
-  position!: string;
+  @Column("int")
+  position!: number;
 
-  @Column()
+  @Column("text")
   description!: string;
 
-  @Column()
-  status!: string;
+  @Column("boolean")
+  status!: boolean;
+
+  @ManyToOne(() => Category, (category) => category.products)
+  category!: Category;
 }
