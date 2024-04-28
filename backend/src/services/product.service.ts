@@ -42,5 +42,19 @@ export const updateProduct = async (data: Product, id: number) => {
 };
 
 export const removeProduct = async (id: number) => {
-  return await ProductDao.removeProduct(id);
+  const product = await ProductDao.getProduct({ id });
+
+  if (!product)
+    throw new AppError({
+      message: "There is no product with this ID",
+      statusCode: 400,
+    });
+
+  const result = await ProductDao.removeProduct(id);
+
+  if (product?.images.length)
+    // remove images after removing the product
+    product.images.forEach((item) => fs.unlinkSync(item.path));
+
+  return 'Done';
 };

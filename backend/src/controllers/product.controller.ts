@@ -61,8 +61,6 @@ export const removeProduct = tryCatchHandler(
     const id = parseInt(req.params.id);
 
     const result = await productServices.removeProduct(id);
-    if (!result.affected)
-      throw new AppError({ message: "There is no product with this ID" });
-    else res.send("Done");
+    res.send(result);
   }
 );
