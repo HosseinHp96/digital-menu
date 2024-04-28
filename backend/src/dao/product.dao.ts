@@ -24,12 +24,8 @@ export default class ProductDao {
     return result;
   };
 
-  static updateProduct = async (data: Product, id: number) => {
-    let productToUpdate = await ProductDao.getProduct({ id });
-
-    productToUpdate = { ...data, id };
-
-    const result = await ProductDao.productRepo.save(productToUpdate);
+  static updateProduct = async (data: Product) => {
+    const result = await ProductDao.productRepo.save(data);
     return result;
   };
 }

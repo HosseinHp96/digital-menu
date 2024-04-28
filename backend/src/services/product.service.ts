@@ -32,10 +32,10 @@ export const updateProduct = async (data: Product, id: number) => {
       statusCode: 400,
     });
 
-  const result = await ProductDao.updateProduct(data, id);
+  const result = await ProductDao.updateProduct({ ...data, id });
 
+  // delete old images after product update
   if (product.images.length)
-    // delete old images after product update
     product.images.forEach((item) => fs.unlinkSync(item.path));
 
   return result;
@@ -52,9 +52,9 @@ export const removeProduct = async (id: number) => {
 
   const result = await ProductDao.removeProduct(id);
 
+  // remove images after removing the product
   if (product?.images.length)
-    // remove images after removing the product
     product.images.forEach((item) => fs.unlinkSync(item.path));
 
-  return 'Done';
+  return "Done";
 };

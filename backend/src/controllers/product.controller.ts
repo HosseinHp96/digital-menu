@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { productServices } from "../services";
-import { AppError, tryCatchHandler } from "../utils";
+import { tryCatchHandler } from "../utils";
 import fs from "fs";
 
 export const allProducts = tryCatchHandler(
