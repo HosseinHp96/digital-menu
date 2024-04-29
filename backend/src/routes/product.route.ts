@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { productController } from "../controllers";
-import { auth, uploadImages } from "../middlewares";
+import { addProductValidator, auth, uploadImages } from "../middlewares";
 
 const router = Router();
 
@@ -15,6 +15,7 @@ router.delete("/:id", productController.removeProduct);
 router.post(
   "/add",
   uploadImages.array("images", 5),
+  addProductValidator,
   productController.addProduct
 );
 

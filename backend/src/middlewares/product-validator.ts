@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from "express";
 import { AppError, tryCatchHandler } from "../utils";
-import { loginUserValidationSchema } from "../ValidationSchemes";
+import { addProductValidationSchema } from "../ValidationSchemes";
 
-export const loginUserValidator = tryCatchHandler(
+export const addProductValidator = tryCatchHandler(
   async (req: Request, res: Response, next: NextFunction) => {
     if (!req.body)
       throw new AppError({ message: "Missing request body!", statusCode: 400 });
 
-    await loginUserValidationSchema.validateAsync(req.body);
+    await addProductValidationSchema.validateAsync(req.body);
 
     next();
   }
