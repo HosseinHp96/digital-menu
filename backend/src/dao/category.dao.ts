@@ -6,12 +6,17 @@ export default class CategoryDao {
   static categoryRepo = AppDataSource.getRepository(Category);
 
   static allCategories = async () => {
-    const categories = await CategoryDao.categoryRepo.find();
+    const categories = await CategoryDao.categoryRepo.find({
+      relations: { products: true },
+    });
     return categories;
   };
 
-  static getCategory = async (data: FindOptionsWhere<Category>) => {
-    const category = await CategoryDao.categoryRepo.findOneBy(data);
+  static getCategory = async (where: FindOptionsWhere<Category>) => {
+    const category = await CategoryDao.categoryRepo.findOne({
+      where,
+      relations: { products: true },
+    });
     return category;
   };
 
