@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { productController } from "../controllers";
-import { addProductValidator, auth, uploadImages } from "../middlewares";
+import { productValidator, auth, uploadImages } from "../middlewares";
 
 const router = Router();
 
@@ -15,13 +15,14 @@ router.delete("/:id", productController.removeProduct);
 router.post(
   "/add",
   uploadImages.array("images", 5),
-  addProductValidator,
+  productValidator,
   productController.addProduct
 );
 
 router.put(
   "/:id",
   uploadImages.array("images", 5),
+  productValidator,
   productController.updateProduct
 );
 
