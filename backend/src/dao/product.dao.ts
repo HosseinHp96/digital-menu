@@ -5,12 +5,21 @@ export default class ProductDao {
   static productRepo = AppDataSource.getRepository(Product);
 
   static allProducts = async () => {
-    const products = await ProductDao.productRepo.find();
+    const products = await ProductDao.productRepo.find({
+      relations: {
+        category: true,
+      },
+    });
     return products;
   };
 
-  static getProduct = async (data: FindOptionsWhere<Product>) => {
-    const product = await ProductDao.productRepo.findOneBy(data);
+  static getProduct = async (where: FindOptionsWhere<Product>) => {
+    const product = await ProductDao.productRepo.findOne({
+      where,
+      relations: {
+        category: true,
+      },
+    });
     return product;
   };
 
