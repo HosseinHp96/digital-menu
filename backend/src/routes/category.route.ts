@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { categoryController } from "../controllers";
-import { auth } from "../middlewares";
+import { auth, categoryValidator } from "../middlewares";
 
 const router = Router();
 
@@ -12,8 +12,8 @@ router.get("/:id", categoryController.getCategoryByID);
 
 router.delete("/:id", categoryController.removeCategory);
 
-router.post("/add", categoryController.addCategory);
+router.post("/add", categoryValidator, categoryController.addCategory);
 
-router.put("/:id", categoryController.updateCategory);
+router.put("/:id", categoryValidator, categoryController.updateCategory);
 
 export { router as categoryRouter };
