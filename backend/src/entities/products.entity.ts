@@ -23,6 +23,8 @@ export default class Product {
   @Column("boolean")
   status!: boolean;
 
-  @ManyToOne(() => Category, (category) => category.products)
+  @ManyToOne(() => Category, (category) => category.products, {
+    onDelete: "CASCADE",
+  })
   category!: Category;
 }
