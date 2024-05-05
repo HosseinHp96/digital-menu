@@ -1,3 +1,4 @@
+import { FindOptionsWhere } from "typeorm";
 import CategoryDao from "../dao/category.dao";
 import { Category } from "../entities";
 import { AppError } from "../utils";
@@ -8,6 +9,18 @@ export const allCategories = async () => {
 
 export const getCategoryByID = async (id: number) => {
   return await CategoryDao.getCategory({ id });
+};
+
+export const checkCategoryAvailability = async (
+  where: FindOptionsWhere<Category>
+) => {
+  const category = await CategoryDao.getCategory(where);
+
+  if (!category)
+    throw new AppError({
+      message: "There is no category with this ID",
+      statusCode: 400,
+    });
 };
 
 export const addCategory = async (category: Category) => {
@@ -23,13 +36,7 @@ export const addCategory = async (category: Category) => {
 };
 
 export const updateCategory = async (data: Category, id: number) => {
-  const category = await CategoryDao.getCategory({ id });
-
-  if (!category)
-    throw new AppError({
-      message: "There is no category with this ID",
-      statusCode: 400,
-    });
+  await checkCategoryAvailability({ id });
 
   const result = await CategoryDao.updateCategory({ ...data, id });
   return result;

@@ -2,6 +2,7 @@ import ProductDao from "../dao/product.dao";
 import fs from "fs";
 import { Product } from "../entities";
 import { AppError } from "../utils";
+import { checkCategoryAvailability } from "./category.service";
 
 export const allProducts = async () => {
   return await ProductDao.allProducts();
@@ -20,6 +21,10 @@ export const addProduct = async (product: Product) => {
       statusCode: 400,
     });
 
+  await checkCategoryAvailability({
+    id: product.category as unknown as number,
+  });
+
   return await ProductDao.addProduct(product);
 };
 
@@ -31,6 +36,10 @@ export const updateProduct = async (data: Product, id: number) => {
       message: "There is no product with this ID",
       statusCode: 400,
     });
+
+  await checkCategoryAvailability({
+    id: product.category as unknown as number,
+  });
 
   const result = await ProductDao.updateProduct({ ...data, id });
 
