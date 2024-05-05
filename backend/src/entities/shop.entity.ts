@@ -2,7 +2,7 @@ import { Entity, Column, OneToMany } from "typeorm";
 
 @Entity({ name: "Shops" })
 export default class Shop {
-  @Column({ primary: true, generated: true })
+  @Column({ default: 1 })
   id!: number;
 
   @Column("text")

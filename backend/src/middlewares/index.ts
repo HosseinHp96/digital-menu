@@ -5,3 +5,4 @@ export * from "./auth";
 export * from "./multer";
 export * from "./product-validator";
 export * from "./category-validator";
+export * from "./shop-validator";

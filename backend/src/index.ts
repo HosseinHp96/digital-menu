@@ -1,6 +1,11 @@
 import express from "express";
 import { initAppDS } from "./app-data-source";
-import { categoryRouter, productRouter, userRouter } from "./routes";
+import {
+  categoryRouter,
+  productRouter,
+  shopRouter,
+  userRouter,
+} from "./routes";
 import { errorHandler, cors } from "./middlewares";
 import { AppError } from "./utils";
 
@@ -24,6 +29,7 @@ app.use(cors);
 app.use("/api/products", productRouter);
 app.use("/api/users", userRouter);
 app.use("/api/categories", categoryRouter);
+app.use("/api/shop", shopRouter);
 
 app.use(() => {
   throw new AppError({ message: "Not Found", statusCode: 404 });
