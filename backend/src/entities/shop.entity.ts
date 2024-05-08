@@ -1,3 +1,4 @@
+import { json } from "stream/consumers";
 import { Entity, Column, OneToMany } from "typeorm";
 
 @Entity({ name: "Shops" })
@@ -14,6 +15,6 @@ export default class Shop {
   @Column("text")
   currency!: string;
 
-  @Column("json")
+  @Column({ nullable: true, type: "json" })
   logo!: Express.Multer.File;
 }
