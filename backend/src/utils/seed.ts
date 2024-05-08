@@ -2,6 +2,8 @@ import { AppDataSource } from "../app-data-source";
 import { User, Shop } from "../entities";
 import bcrypt from "bcrypt";
 
+// this script used to add user and shop from terminal
+
 async function seedUser() {
   try {
     const password = "digitalMenu$$1234";
