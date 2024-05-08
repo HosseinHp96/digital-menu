@@ -11,7 +11,7 @@ export const updateShop = async (data: Shop) => {
   const result = await ShopDao.updateShop({ ...data, id: 1 });
 
   // delete old logo after shop update
-  fs.unlinkSync(shop?.logo.path as string);
+  if (shop?.logo) fs.unlinkSync(shop?.logo.path as string);
 
   return result;
 };
